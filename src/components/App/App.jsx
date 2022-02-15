@@ -8,41 +8,51 @@ const getRandomCoord = () => {
   let min = 1;
   let max = 98;
 
-  let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
-  let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
+  let x = Math.floor((Math.random() * (max - min + 1) + min) / 4) * 4;
+  let y = Math.floor((Math.random() * (max - min + 1) + min) / 4) * 4;
   return [x, y];
 };
 
+const initialState = [
+  [0, 0],
+  [4, 0],
+];
+
 const App = () => {
-  const [snakeDots, setsSakeDots] = useState([
-    [0, 0],
-    [2, 0],
-  ]);
+  const [snakeDots, setsSakeDots] = useState(initialState);
   const [food, setFood] = useState(getRandomCoord());
-  const [direction, setDirection] = useState("DOWN");
+  const [direction, setDirection] = useState("RIGHT");
+  const [isStart, setIsStart] = useState(false);
 
-  // setInterval(setDirection("RIGHT"), 500);
+  useEffect(() => {
+    if (isStart === true) {
+      const id = setInterval(() => {
+        moveSnake();
+      }, 500);
 
-  const movie = () => {
+      return () => {
+        clearInterval(id);
+      };
+    }
+  }, [snakeDots]);
+
+  const onStart = () => {
+    setIsStart(true);
     moveSnake();
   };
 
   const onLeft = () => {
     setDirection("LEFT");
-    moveSnake();
   };
 
   const onUp = () => {
     setDirection("UP");
-    moveSnake();
   };
   const onRight = () => {
     setDirection("RIGHT");
-    moveSnake();
   };
   const onDown = () => {
     setDirection("DOWN");
-    moveSnake();
   };
 
   const moveSnake = () => {
@@ -51,16 +61,16 @@ const App = () => {
 
     switch (direction) {
       case "LEFT":
-        head = [head[0] - 2, head[1]];
+        head = [head[0] - 4, head[1]];
         break;
       case "RIGHT":
-        head = [head[0] + 2, head[1]];
+        head = [head[0] + 4, head[1]];
         break;
       case "UP":
-        head = [head[0], head[1] - 2];
+        head = [head[0], head[1] - 4];
         break;
       case "DOWN":
-        head = [head[0], head[1] + 2];
+        head = [head[0], head[1] + 4];
         break;
 
       default:
@@ -71,20 +81,58 @@ const App = () => {
 
     setsSakeDots(dots);
   };
-  console.log(`snakeDots`, snakeDots);
+
+  const checkBorder = () => {
+    let head = snakeDots[snakeDots.length - 1];
+    if (head[0] >= 100 || head[0] < 0 || head[1] >= 100 || head[1] < 0) {
+      gameOver();
+    }
+    return;
+  };
+
+  const onEatFood = () => {
+    let head = snakeDots[snakeDots.length - 1];
+    if (head[0] === food[0] && head[1] === food[1]) {
+      setFood(getRandomCoord());
+      enlargerSnake();
+    }
+  };
+
+  const enlargerSnake = () => {
+    let newSnake = [...snakeDots];
+    newSnake.unshift([]);
+    setsSakeDots(newSnake);
+  };
+
+  // const onHittingSomeself = () => {
+  //   let snake = [...snakeDots];
+  //   let head = snake[snake.length - 1];
+
+  //   snake.forEach((dot) => {
+  //     if (head[0] === dot[0] && head[1] === dot[1]) {
+  //       gameOver();
+  //     }
+  //   });
+  // };
+
+  const gameOver = () => {
+    alert("Game over");
+    setsSakeDots(initialState);
+    setDirection("RIGHT");
+    setIsStart(false);
+  };
 
   useEffect(() => {
-    setInterval(onRight(), 1000);
-  }, []);
+    checkBorder();
+  }, [checkBorder]);
+
+  useEffect(() => {
+    onEatFood();
+  }, [onEatFood]);
 
   // useEffect(() => {
-  //   setInterval(moveSnake, 500);
-  // }, [moveSnake]);
-
-  // const checkBorder = () => {
-
-  //   if(){}
-  // }
+  //   onHittingSomeself();
+  // }, [onHittingSomeself]);
 
   return (
     <div className={s.game_area}>
@@ -95,7 +143,7 @@ const App = () => {
         onUp={onUp}
         onRight={onRight}
         onDown={onDown}
-        movie={movie}
+        onStart={onStart}
       />
     </div>
   );
