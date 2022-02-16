@@ -38,10 +38,31 @@ const getRandomCoord = () => {
   return [x, y];
 };
 
+const getRandomFood = () => {
+  let min = 1;
+  let max = 30;
+  let apple = 1;
+  let pear = 5;
+  let grapes = 10;
+  let randomNumber = Math.random() * (max - min) + min;
+
+  if (randomNumber < 10) {
+    return apple;
+  }
+  if (randomNumber >= 10 && randomNumber < 20) {
+    return pear;
+  }
+  if (randomNumber >= 20) {
+    return grapes;
+  }
+};
+
 const initialState = [
   [0, 0],
   [4, 0],
 ];
+
+let STARTING_SPEED = 300;
 
 const App = () => {
   const [snakeDots, setsSakeDots] = useState(initialState);
@@ -54,6 +75,8 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [onSave, setOnSave] = useState(false);
   const [newUser, setNewUser] = useState("");
+  const [typesOfFeed, setTypesOfFeed] = useState(getRandomFood());
+  const [speed, setSpeed] = useState(STARTING_SPEED);
 
   useEffect(() => {
     const getUser = async () => {
@@ -62,6 +85,13 @@ const App = () => {
     };
     getUser();
   }, []);
+
+  useEffect(() => {
+    let i = Math.floor(point / 50);
+    if (i > 0) {
+      setSpeed(STARTING_SPEED - 10 * i);
+    }
+  }, [point]);
 
   useEffect(() => {
     if (newUser) {
@@ -76,7 +106,7 @@ const App = () => {
     if (isStart === true) {
       const id = setInterval(() => {
         moveSnake();
-      }, 500);
+      }, speed);
 
       return () => {
         clearInterval(id);
@@ -149,7 +179,18 @@ const App = () => {
     let head = snakeDots[snakeDots.length - 1];
     if (head[0] === food[0] && head[1] === food[1]) {
       setFood(getRandomCoord());
-      setPoint((prev) => prev + 1);
+      setTypesOfFeed(getRandomFood());
+      setPoint((prev) => {
+        if (typesOfFeed === 1) {
+          return prev + 1;
+        }
+        if (typesOfFeed === 5) {
+          return prev + 5;
+        }
+        if (typesOfFeed === 10) {
+          return prev + 10;
+        }
+      });
       enlargerSnake();
     }
   };
@@ -205,7 +246,7 @@ const App = () => {
     setNewUser({ name: newNameUser, score: point, id: nanoid(4) });
     closeSaveForm();
   };
-  console.log(`setNewUser`, newUser);
+
   const closeSaveForm = () => {
     setOnSave(false);
   };
@@ -223,22 +264,25 @@ const App = () => {
         />
       )}
       <Welcome newNameUser={newNameUser} />
-      <div className="points">
-        <Points point={point} />
-        <RecordHolders users={users} />
-      </div>
-      <div className={s.game_area}>
-        <Snake snakeDots={snakeDots} />
-        <Food food={food} />
-        <Btn
-          onLeft={onLeft}
-          onUp={onUp}
-          onRight={onRight}
-          onDown={onDown}
-          onStart={onStart}
-          isStart={isStart}
-          onPause={onPause}
-        />
+      <div className={s.points}>
+        <div>
+          <Points point={point} />
+          <RecordHolders users={users} />
+        </div>
+
+        <div className={s.game_area}>
+          <Snake snakeDots={snakeDots} />
+          <Food food={food} typesOfFeed={typesOfFeed} />
+          <Btn
+            onLeft={onLeft}
+            onUp={onUp}
+            onRight={onRight}
+            onDown={onDown}
+            onStart={onStart}
+            isStart={isStart}
+            onPause={onPause}
+          />
+        </div>
       </div>
     </div>
   );

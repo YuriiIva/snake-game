@@ -1,3 +1,5 @@
+/* --------------------Snake -------------------*/
+
 .snake_dot {
   position: absolute;
   width: 4%;
@@ -10,21 +12,53 @@
   position: absolute;
   width: 4%;
   height: 4%;
-  background-color: rgb(163, 22, 22);
-  border: 1px solid #fff;
+
   z-index: 1;
+  color: red;
 }
+
+/*------------------ Food-------------------- */
+
+.pear {
+  color: rgb(3, 68, 17);
+}
+
+.grapes {
+  color: rgb(12, 9, 170);
+}
+
+/* ----------------------------Game Over--------------------- */
+
 .title_gameOver {
   position: absolute;
   top: 120px;
   left: 140px;
 }
-.points {
-  display: flex;
 
-  justify-content: space-between;
-}
+/*----------------------- welcome-------------------- */
+
 .welcome {
   text-align: center;
   background-color: rgb(210, 241, 124);
+}
+
+/*--------------------------- Points ---------------------*/
+
+.current_points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(210, 241, 124);
+}
+.title_current_points {
+  margin-right: 25px;
+}
+
+/* ----------record holders----------------  */
+
+.record_holders {
+  background-color: rgb(210, 241, 124);
+}
+.record_holders_title {
+  text-align: center;
 }

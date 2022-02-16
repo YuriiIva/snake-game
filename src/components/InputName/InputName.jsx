@@ -42,7 +42,7 @@ const InputName = ({ closeForm, onInputName }) => {
               type="text"
               name="nameUser"
               value={nameUser}
-              placeholder="Input your name"
+              placeholder="Type your name"
               required
               minLength="3"
               maxLength="20"

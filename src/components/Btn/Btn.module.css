@@ -20,17 +20,17 @@
 }
 
 .btn_left {
-  left: -45px;
+  left: -30px;
 }
 .btn_up {
-  top: -25px;
+  top: -20px;
   left: 15px;
 }
 .btn_right {
-  left: 83px;
+  left: 60px;
 }
 .btn_down {
-  top: 25px;
+  top: 20px;
   left: 15px;
 }
 .btn_start {
@@ -39,6 +39,7 @@
   width: 70px;
   height: 30px;
   border-radius: 10%;
+  z-index: 3;
 }
 .btn_pause {
   left: 183px;

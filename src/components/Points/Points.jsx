@@ -2,9 +2,9 @@ import React from "react";
 
 const Points = ({ point }) => {
   return (
-    <div>
-      <h3>Current results</h3>
-      <p>{point}</p>
+    <div className="current_points">
+      <h3 className="title_current_points">Current results</h3>
+      <p>{point} points</p>
     </div>
   );
 };
