@@ -1,22 +1,48 @@
 import React from "react";
+import s from "./Btn.module.css";
 
-const Btn = ({ onLeft, onUp, onRight, onDown, onStart }) => {
+const Btn = ({ onLeft, onUp, onRight, onDown, onStart, isStart, onPause }) => {
   return (
-    <div>
-      <button type="button" className="btn" onClick={onLeft}>
+    <div className={s.btn_list}>
+      <button
+        type="button"
+        className={`${s.btn} ${s.btn_left} `}
+        onClick={onLeft}
+      >
         Left
       </button>
-      <button type="button" className="btn" onClick={onUp}>
+      <button type="button" className={`${s.btn} ${s.btn_up} `} onClick={onUp}>
         Up
       </button>
-      <button type="button" className="btn" onClick={onRight}>
+      <button
+        type="button"
+        className={`${s.btn} ${s.btn_right} `}
+        onClick={onRight}
+      >
         Right
       </button>
-      <button type="button" className="btn" onClick={onDown}>
+      <button
+        type="button"
+        className={`${s.btn} ${s.btn_down} `}
+        onClick={onDown}
+      >
         Down
       </button>
-      <button type="button" className="btn" onClick={onStart}>
-        Start
+      {!isStart && (
+        <button
+          type="button"
+          className={`${s.btn} ${s.btn_start} `}
+          onClick={onStart}
+        >
+          Start
+        </button>
+      )}
+      <button
+        type="button"
+        className={`${s.btn} ${s.btn_pause} `}
+        onClick={onPause}
+      >
+        Pause
       </button>
     </div>
   );

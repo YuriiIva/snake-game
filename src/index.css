@@ -14,12 +14,17 @@
   border: 1px solid #fff;
   z-index: 1;
 }
+.title_gameOver {
+  position: absolute;
+  top: 120px;
+  left: 140px;
+}
+.points {
+  display: flex;
 
-.btn {
-  margin-top: 605px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  width: 60px;
-  height: 20px;
-  background-color: chartreuse;
+  justify-content: space-between;
+}
+.welcome {
+  text-align: center;
+  background-color: rgb(210, 241, 124);
 }

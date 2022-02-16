@@ -1,0 +1,47 @@
+.btn {
+  position: absolute;
+  margin-top: 605px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 60px;
+  height: 20px;
+  background-color: chartreuse;
+  border-radius: 50%;
+  box-shadow: 1px 4px 1px 0px rgb(30 129 204 / 64%);
+}
+.btn:hover {
+  box-shadow: 0 0 1px 1px rgba(30, 129, 204, 0.2);
+}
+
+.btn_list {
+  position: relative;
+  bottom: 175px;
+  left: 150px;
+}
+
+.btn_left {
+  left: -45px;
+}
+.btn_up {
+  top: -25px;
+  left: 15px;
+}
+.btn_right {
+  left: 83px;
+}
+.btn_down {
+  top: 25px;
+  left: 15px;
+}
+.btn_start {
+  top: -260px;
+  left: 13px;
+  width: 70px;
+  height: 30px;
+  border-radius: 10%;
+}
+.btn_pause {
+  left: 183px;
+  border-radius: 10%;
+  background-color: chocolate;
+}
