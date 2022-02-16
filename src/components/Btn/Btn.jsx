@@ -6,7 +6,7 @@ const Btn = ({ onLeft, onUp, onRight, onDown, onStart, isStart, onPause }) => {
     <div className={s.btn_list}>
       <button
         type="button"
-        className={`${s.btn} ${s.btn_left} `}
+        className={`${s.btn} ${s.btn_left}`}
         onClick={onLeft}
       >
         Left
