@@ -29,7 +29,7 @@ const SaveResults = ({ closeForm, handleYes, handleNo }) => {
           </button>
         </header>
         <div className={s.content}>
-          <p>Do you have save results?</p>
+          <p>Do you want to save?</p>
           <button type="button" className={s.button} onClick={handleYes}>
             Yes
           </button>
