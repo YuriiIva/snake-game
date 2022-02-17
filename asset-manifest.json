@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/snake-game-2/static/css/main.0762bd7e.chunk.css",
-    "main.js": "/snake-game-2/static/js/main.c084fc6d.chunk.js",
-    "main.js.map": "/snake-game-2/static/js/main.c084fc6d.chunk.js.map",
+    "main.js": "/snake-game-2/static/js/main.be65ff00.chunk.js",
+    "main.js.map": "/snake-game-2/static/js/main.be65ff00.chunk.js.map",
     "runtime-main.js": "/snake-game-2/static/js/runtime-main.f4dcf985.js",
     "runtime-main.js.map": "/snake-game-2/static/js/runtime-main.f4dcf985.js.map",
     "static/css/2.f4c56af9.chunk.css": "/snake-game-2/static/css/2.f4c56af9.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.f4c56af9.chunk.css",
     "static/js/2.5c4a3fb7.chunk.js",
     "static/css/main.0762bd7e.chunk.css",
-    "static/js/main.c084fc6d.chunk.js"
+    "static/js/main.be65ff00.chunk.js"
   ]
 }
